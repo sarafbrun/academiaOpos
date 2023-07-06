@@ -3,3 +3,25 @@
 
 
 GET {{host}}{{urlUsers}}
+Authorization: 
+
+###
+POST {{host}}{{urlUsers}}/register
+Content-Type: application/json
+
+{
+    "email": "sara@gmail.com",
+    "password": "1234",
+    "username": "sara93",
+    "role": "admin"
+}
+
+###
+
+POST {{host}}{{urlUsers}}/login
+Content-Type: application/json
+
+{
+    "email": "alberto@gmail.com",
+    "password": "1234"
+}

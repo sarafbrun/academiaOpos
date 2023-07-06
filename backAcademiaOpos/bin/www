@@ -9,6 +9,7 @@ const debug = require('debug')('backacademiaopos:server');
 const http = require('http');
 
 require('dotenv').config();
+
 require('../config/db');
 
 /**
