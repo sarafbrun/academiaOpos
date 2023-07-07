@@ -1,11 +1,11 @@
 @host = http://localhost:3000
 @urlUsers = /opos/users
 
-
+### GET ALL USERS
 GET {{host}}{{urlUsers}}
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2ODkxNTYyODYsImlhdCI6MTY4ODcyNDI4Nn0.IeAF2jBA7SDVmOLalmk0OMOQug9O6xD1Tza_KX0WU_0
 
-###
+###GET AN USER
 GET {{host}}{{urlUsers}}/user/7
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2ODkxNTYyODYsImlhdCI6MTY4ODcyNDI4Nn0.IeAF2jBA7SDVmOLalmk0OMOQug9O6xD1Tza_KX0WU_0
 
@@ -13,27 +13,40 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2
 
 
 
-###
+### REGISTER AN USER
 POST {{host}}{{urlUsers}}/register
 Content-Type: application/json
 
 {
-    "email": "juan@gmail.com",
+    "email": "pepe@gmail.com",
     "password": "1234",
-    "username": "juan",
+    "username": "pepe25",
     "role": "correos"
 }
 
-###
+### LOGIN
 
 POST {{host}}{{urlUsers}}/login
 Content-Type: application/json
 
 {
-    "email": "sara@gmail.com",
+    "email": "pepe@gmail.com",
     "password": "1234"
 }
 
-###
+
+### EDIT USER
+PUT {{host}}{{urlUsers}}/edit/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2ODkxNzk3OTIsImlhdCI6MTY4ODc0Nzc5Mn0.46JSuRe0lOQIF1bcaS2Om_OrRNHJd0TA6qcA5nWVlE8
+Content-Type: application/json
+
+{
+    "email":"pepe25@gmail.com",
+    "password":"1234",
+    "username":"pepe25"
+}
+
+
+### DELETE USER IF YOU'RE AN ADMIN
 DELETE {{host}}{{urlUsers}}/delete/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODkxNzg0MDEsImlhdCI6MTY4ODc0NjQwMX0.CKWnbZZKXxpVdVBYy7w8ydOD9BD2oO8G5L1aI2y-56U

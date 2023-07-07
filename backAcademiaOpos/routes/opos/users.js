@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const { create, getByEmail, getUserById, getRole, deleteUser } = require('../../models/users.model')
+const { create, getByEmail, getUserById, getRole, deleteUser, updateUserById } = require('../../models/users.model')
 const { createToken } = require('../../helpers/utils');
 const { checkToken, checkAdmin } = require('../../helpers/middlewares')
 
@@ -96,6 +96,23 @@ router.post('/login', async (req, res) => {
         res.json({ fallo: err.message });
     }
 });
+
+//EDIT USER
+router.put('/edit/:userId', checkToken, async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        await updateUserById(userId, req.body);
+
+        const [user] = await getUserById(userId);
+        res.json(user[0]);
+
+    } catch (error) {
+        res.json({ fatal: error.message });
+    }
+})
+
+
 
 //DELETE USER
 router.delete('/delete/:userId', checkToken, checkAdmin(), async (req, res) => {
