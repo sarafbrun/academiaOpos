@@ -2,18 +2,18 @@
 @urlUsers = /opos/users
 
 
-GET {{host}}{{urlUsers}}
-Authorization: 
+GET {{host}}{{urlUsers}}/user/3
+
 
 ###
 POST {{host}}{{urlUsers}}/register
 Content-Type: application/json
 
 {
-    "email": "sara@gmail.com",
+    "email": "luis@gmail.com",
     "password": "1234",
-    "username": "sara93",
-    "role": "admin"
+    "username": "luis",
+    "role": "correos"
 }
 
 ###
@@ -25,3 +25,8 @@ Content-Type: application/json
     "email": "alberto@gmail.com",
     "password": "1234"
 }
+
+###
+
+DELETE {{host}}{{urlUsers}}/delete/9
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzQwMjUsImlhdCI6MTY4ODc0MjAyNX0.eawrYHjhP7MVj1_qwT-nNgzNXfYALOTZJ-sIKvJ_-mI

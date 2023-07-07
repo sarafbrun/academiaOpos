@@ -24,5 +24,8 @@ JOIN counts_app.groups as g ON g.id = uhg.users_id
 WHERE g.id = ? AND uhg.role = "admin"`, [groupId])
 }
 
+const deleteUser = (userId) => {
+    return db.query('DELETE FROM academia_opos.users WHERE id = ?', [userId]);
+}
 
-module.exports = { create, getByEmail, getUserById, getUserByUsername, getRole }
+module.exports = { create, getByEmail, getUserById, getUserByUsername, getRole, deleteUser }

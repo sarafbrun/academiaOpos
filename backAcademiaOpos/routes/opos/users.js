@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const { create, getByEmail, getUserById, getRole } = require('../../models/users.model')
+const { create, getByEmail, getUserById, getRole, deleteUser } = require('../../models/users.model')
 const { createToken } = require('../../helpers/utils');
-const { checkToken } = require('../../helpers/middlewares')
+const { checkToken, checkAdmin } = require('../../helpers/middlewares')
 
 router.get('/', checkToken, async (req, res) => {
     try {
@@ -16,11 +16,11 @@ router.get('/', checkToken, async (req, res) => {
     }
 });
 
-router.get('/user/:userId', checkToken, async (req, res) => {
+router.get('/user/:userId', async (req, res) => {
     try {
 
-        const { id } = req.user
-        const [user] = await getUserById(id)
+        const { userId } = req.params
+        const [user] = await getUserById(userId)
         res.json(user)
     } catch (error) {
         res.json({ fatal: error.message })
@@ -97,10 +97,19 @@ router.post('/login', async (req, res) => {
     }
 })
 
+router.delete('/delete/:userId', checkToken, checkAdmin(), async (req, res) => {
+
+    const { userId } = req.params
+    try {
+        await deleteUser(userId)
+        res.json('Usuario eliminado')
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+});
 
 
 
-module.exports = router;
 
 
 module.exports = router;
