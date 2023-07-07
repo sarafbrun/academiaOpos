@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const { create, getByEmail, getUserById, getRole } = require('../../models/users.model')
+const { create, getByEmail, getUserById, deleteUser, getRole } = require('../../models/users.model')
 const { createToken } = require('../../helpers/utils');
-const { checkToken } = require('../../helpers/middlewares')
+const { checkToken } = require('../../helpers/middlewares');
+const { checkAdmin } = require('../../helpers/middlewares')
 
-router.get('/', checkToken, async (req, res) => {
+router.get('/username', checkToken, async (req, res) => {
     try {
 
         const { username } = req.user
@@ -16,7 +17,7 @@ router.get('/', checkToken, async (req, res) => {
     }
 });
 
-router.get('/user/:userId', checkToken, async (req, res) => {
+router.get('/:userId', checkToken, async (req, res) => {
     try {
 
         const { id } = req.user
@@ -56,7 +57,7 @@ router.get('/loggedId', checkToken, async (req, res) => {
 });
 
 
-//POST /api/usuarios/registro
+//POST /opos/register
 router.post('/register', async (req, res) => {
 
     req.body.password = bcrypt.hashSync(req.body.password, 8)
@@ -69,7 +70,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-
+//POST /opos/login
 router.post('/login', async (req, res) => {
     try {
         //Existe el email en la base de datos?
@@ -95,12 +96,32 @@ router.post('/login', async (req, res) => {
     } catch (err) {
         res.json({ fallo: err.message });
     }
-})
+});
+
+//DELETE USER
+router.delete('/delete/:userId', checkAdmin(), async (req, res) => {
+
+    const { userId } = req.params;
+
+    try {
+        const [user] = await getUserById(userId);
+        if (user.length === 0) {
+            return res.json({ fatal: 'El usuario seleccionado no existe' });
+        }
+
+        await deleteUser(userId);
+
+        res.json(user[0]);
+
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
 
 
 
 
-module.exports = router;
+
 
 
 module.exports = router;

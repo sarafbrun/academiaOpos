@@ -19,19 +19,19 @@ const checkToken = async (req, res, next) => {
     const [result] = await getUserById(obj.user_id);
     req.user = result[0]
 
+
     next();
 }
 
 const checkAdmin = () => {
 
     return async (req, res, next) => {
-        const userId = req.user.id
-        const { groupId } = req.params
+        const userId = req.user.id;
 
-        const [admin] = await db.query(`SELECT * FROM counts_app.users_has_groups WHERE users_id = ? AND groups_id = ? AND role = "admin"`, [userId, groupId])
+        const [admin] = await db.query(`SELECT * FROM academiaopos.users WHERE users.id = ? AND role = "admin"`, [userId])
 
-        if (admin.length > 0 && admin[0].role === "admin") {
-            req.admin = admin;
+        if (role === "admin") {
+            req.role = admin;
             return next()
         }
 

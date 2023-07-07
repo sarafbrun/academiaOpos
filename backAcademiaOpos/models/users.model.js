@@ -14,15 +14,19 @@ const getUserById = (userId) => {
 }
 
 const getUserByUsername = (username) => {
-    return db.query('SELECT users.id FROM counts_app.users WHERE users.username = ?', [username])
+    return db.query('SELECT users.id FROM academiaopos.users WHERE users.username = ?', [username]);
 }
 
 const getRole = (groupId) => {
-    return db.query(`Select uhg.role FROM counts_app.users_has_groups as uhg
-JOIN counts_app.users as u ON u.id = uhg.users_id
-JOIN counts_app.groups as g ON g.id = uhg.users_id
-WHERE g.id = ? AND uhg.role = "admin"`, [groupId])
+    return db.query(`Select uhg.role FROM academiaopos.users_has_groups as uhg
+JOIN academiaopos.users as u ON u.id = uhg.users_id
+JOIN academiaopos.groups as g ON g.id = uhg.users_id
+WHERE g.id = ? AND uhg.role = "admin"`, [groupId]);
+}
+
+const deleteUser = (userId) => {
+    return db.query('DELETE FROM academiaopos.users WHERE users.id = ?', [userId]);
 }
 
 
-module.exports = { create, getByEmail, getUserById, getUserByUsername, getRole }
+module.exports = { create, getByEmail, getUserById, getUserByUsername, getRole, deleteUser }
