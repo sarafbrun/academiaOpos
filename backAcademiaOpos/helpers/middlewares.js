@@ -20,6 +20,7 @@ const checkToken = async (req, res, next) => {
 
     req.user = result[0]
 
+
     next();
 }
 

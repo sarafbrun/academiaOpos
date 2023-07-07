@@ -4,7 +4,7 @@ const { create, getByEmail, getUserById, getRole, deleteUser } = require('../../
 const { createToken } = require('../../helpers/utils');
 const { checkToken, checkAdmin } = require('../../helpers/middlewares')
 
-router.get('/', checkToken, async (req, res) => {
+router.get('/username', checkToken, async (req, res) => {
     try {
 
         const { username } = req.user
@@ -56,7 +56,7 @@ router.get('/loggedId', checkToken, async (req, res) => {
 });
 
 
-//POST /api/usuarios/registro
+//POST /opos/register
 router.post('/register', async (req, res) => {
 
     req.body.password = bcrypt.hashSync(req.body.password, 8)
@@ -69,7 +69,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-
+//POST /opos/login
 router.post('/login', async (req, res) => {
     try {
         //Existe el email en la base de datos?
@@ -95,7 +95,28 @@ router.post('/login', async (req, res) => {
     } catch (err) {
         res.json({ fallo: err.message });
     }
-})
+});
+
+//DELETE USER
+router.delete('/delete/:userId', checkToken, checkAdmin(), async (req, res) => {
+
+    const { userId } = req.params;
+
+    try {
+        const [user] = await getUserById(userId);
+        if (user.length === 0) {
+            return res.json({ fatal: 'El usuario seleccionado no existe' });
+        }
+
+        await deleteUser(userId);
+
+        res.json(user[0]);
+
+    } catch (error) {
+        res.json({ fatal: error.message })
+    }
+});
+
 
 router.delete('/delete/:userId', checkToken, checkAdmin(), async (req, res) => {
 
