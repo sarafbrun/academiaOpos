@@ -36,4 +36,4 @@ Content-Type: application/json
 
 ###
 DELETE {{host}}{{urlUsers}}/delete/8
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2ODkxNjE3MDQsImlhdCI6MTY4ODcyOTcwNH0.ylhrlT6gAFdDOqniuI_U1OrDOTphat00WYaJDWheYt4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2ODkxNjE3MDQsImlhdCI6MTY4ODcyOTcwNH0.    ylhrlT6gAFdDOqniuI_U1OrDOTphat00WYaJDWheYt4
