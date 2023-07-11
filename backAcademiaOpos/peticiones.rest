@@ -1,5 +1,6 @@
 @host = http://localhost:3000
 @urlUsers = /opos/users
+@urlNews = /opos/news
 
 ### GET ALL USERS
 GET {{host}}{{urlUsers}}
@@ -18,10 +19,10 @@ POST {{host}}{{urlUsers}}/register
 Content-Type: application/json
 
 {
-    "email": "pepe@gmail.com",
+    "email": "laura@gmail.com",
     "password": "1234",
-    "username": "pepe25",
-    "role": "correos"
+    "username": "lauri10",
+    "role": "age"
 }
 
 ### LOGIN
@@ -30,7 +31,7 @@ POST {{host}}{{urlUsers}}/login
 Content-Type: application/json
 
 {
-    "email": "pepe@gmail.com",
+    "email": "sara@gmail.com",
     "password": "1234"
 }
 
@@ -41,12 +42,44 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2
 Content-Type: application/json
 
 {
-    "email":"pepe25@gmail.com",
+    "email":"sara@gmail.com",
     "password":"1234",
-    "username":"pepe25"
+    "username":"sara93"
 }
 
 
 ### DELETE USER IF YOU'RE AN ADMIN
 DELETE {{host}}{{urlUsers}}/delete/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODkxNzg0MDEsImlhdCI6MTY4ODc0NjQwMX0.CKWnbZZKXxpVdVBYy7w8ydOD9BD2oO8G5L1aI2y-56U
+
+
+
+
+
+
+
+##############################    NEWS
+
+
+
+
+
+### GET ALL NEWS
+GET {{host}}{{urlNews}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODk0MzY1NTgsImlhdCI6MTY4OTAwNDU1OH0.IIOe7-qPY-tIUq-5FeGMBtQvubn8iVxLn_C3-Fm5nxM
+
+
+### ADD NEW (ADMIN)
+POST {{host}}{{urlNews}}/addNew
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODk1MjY3NjQsImlhdCI6MTY4OTA5NDc2NH0.wytDogVMilKiinoTOoTiiqJ7hqOu9dktoduDJ5sBuok
+Content-Type: application/json
+
+{
+    "title": "prueba2",
+    "text": "Esto es una prueba",
+    "type": "correos"
+}
+
+### DELETE NEW (ADMIN)
+DELETE {{host}}{{urlNews}}/deleteNew/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODk1MjY3NjQsImlhdCI6MTY4OTA5NDc2NH0.wytDogVMilKiinoTOoTiiqJ7hqOu9dktoduDJ5sBuok
