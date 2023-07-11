@@ -2,6 +2,14 @@ const getAllTest = () => {
     return db.query("SELECT * FROM academia_opos.test")
 }
 
+const getOneTest = (id) => {
+    return db.query("SELECT * from academia_opos.test where id = ?", [id])
+}
+
+const getOneTestByType = (id, role) => {
+    return db.query("SELECT * from academia_opos.test where id = ? and type = ?", [id, role])
+}
+
 const getByType = (type) => {
     return db.query("SELECT * FROM academia_opos.test where type = ?", [type])
 }
@@ -27,5 +35,5 @@ const deleteTest = (Id) => {
 
 
 
-module.exports = { getAllTest, getByType, create, update, deleteTest }
+module.exports = { getAllTest, getOneTest, getOneTestByType, getByType, create, update, deleteTest }
 
