@@ -1,128 +1,74 @@
 @host = http://localhost:3000
 @urlUsers = /opos/users
+@urlNews = /opos/news
 
 @urltest = /opos/tests
 @urlsyllabus = /opos/syllabus
-
+### GET ALL USERS
 GET {{host}}{{urlUsers}}
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2ODkxNTYyODYsImlhdCI6MTY4ODcyNDI4Nn0.IeAF2jBA7SDVmOLalmk0OMOQug9O6xD1Tza_KX0WU_0
 
-###
+###GET AN USER
 GET {{host}}{{urlUsers}}/user/7
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2ODkxNTYyODYsImlhdCI6MTY4ODcyNDI4Nn0.IeAF2jBA7SDVmOLalmk0OMOQug9O6xD1Tza_KX0WU_0
 
 
-###
+
+
+
+### REGISTER AN USER
 POST {{host}}{{urlUsers}}/register
 Content-Type: application/json
 
 {
-    "email": "araceli@gmail.com",
+    "email": "laura@gmail.com",
     "password": "1234",
-    "username": "araceli",
-    "role": "correos"
+    "username": "lauri10",
+    "role": "age"
 }
 
-###
+### LOGIN
 
 POST {{host}}{{urlUsers}}/login
 Content-Type: application/json
 
 {
-    "email": "araceli@gmail.com",
+    "email": "sara@gmail.com",
     "password": "1234"
 }
 
 ###
-PUT {{host}}{{urlUsers}}/edit/3
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2ODkxNzk3OTIsImlhdCI6MTY4ODc0Nzc5Mn0.46JSuRe0lOQIF1bcaS2Om_OrRNHJd0TA6qcA5nWVlE8
+DELETE {{host}}{{urlUsers}}/delete/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODkxNzg0MDEsImlhdCI6MTY4ODc0NjQwMX0.CKWnbZZKXxpVdVBYy7w8ydOD9BD2oO8G5L1aI2y-56U
+
+
+
+
+
+
+
+##############################    NEWS
+
+
+
+
+
+### GET ALL NEWS
+GET {{host}}{{urlNews}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODk0MzY1NTgsImlhdCI6MTY4OTAwNDU1OH0.IIOe7-qPY-tIUq-5FeGMBtQvubn8iVxLn_C3-Fm5nxM
+
+
+### ADD NEW (ADMIN)
+POST {{host}}{{urlNews}}/addNew
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODk1MjY3NjQsImlhdCI6MTY4OTA5NDc2NH0.wytDogVMilKiinoTOoTiiqJ7hqOu9dktoduDJ5sBuok
 Content-Type: application/json
 
 {
-    "email":"pepe25@gmail.com",
-    "password":"1234",
-    "username":"pepe25"
+    "title": "prueba3",
+    "text": "Esto es una prueba",
+    "type": "correos"
 }
 
-###
-DELETE {{host}}{{urlUsers}}/delete/5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-
-
-##############TEST############# 
-
-GET {{host}}{{urltest}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-
-###
-
-GET {{host}}{{urltest}}/type
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODk0MzU1NjgsImlhdCI6MTY4OTAwMzU2OH0.EdtRGloouonmwmmyNjberCHj9_6fQyTM_OduGmuwEfI
-
-
-POST {{host}}{{urltest}}/newTest
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-Content-Type: application/json
-
-{
-    "name": "tema 4",
-    "type":"age"
-   
-}
-
-###
-
-PUT {{host}}{{urltest}}/editTest/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-Content-Type: application/json
-
-{
-    "name": "TEMA 3 ajijiji",
-    "type": "age"
-}
-
-###
-
-DELETE {{host}}{{urltest}}/delete/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-
-
-#####SYLLABUS######
-
-
-GET {{host}}{{urlsyllabus}}
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-
-###
-
-GET {{host}}{{urlsyllabus}}/type
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNjg5NTI3NDczLCJpYXQiOjE2ODkwOTU0NzN9.YLEIGNDtrA3cSAjKz9E-MTsn2esHL9loPfxjS1CoGUI
-
-###
-
-POST {{host}}{{urlsyllabus}}/newsyllabus
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-Content-Type: application/json
-
-{
-    "route": "ruta de prueba HOLIIIII",
-    "type":"age"
-   
-}
-
-###
-
-PUT {{host}}{{urlsyllabus}}/editsyllabus/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-Content-Type: application/json
-
-{
-    "route": "asdafsf",
-    "type": "age"
-}
-
-###
-
-DELETE {{host}}{{urlsyllabus}}/delete/2
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODkxNzkxNzcsImlhdCI6MTY4ODc0NzE3N30.Dqu7_XUJI3Fhn7Tx6yB1U7DIo_qeI0KRn4Jo1tbtzYM
-
+### DELETE NEW (ADMIN)
+DELETE {{host}}{{urlNews}}/deleteNew/5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2ODk1MjY3NjQsImlhdCI6MTY4OTA5NDc2NH0.wytDogVMilKiinoTOoTiiqJ7hqOu9dktoduDJ5sBuok
