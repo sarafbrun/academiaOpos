@@ -53,6 +53,7 @@ Content-Type: application/json
 
 {
     "email": "sara93@gmail.com",
+    "email": "araceli@gmail.com",
     "password": "1234"
 }
 
@@ -138,3 +139,13 @@ Content-Type: application/json
 DELETE {{host}}{{urlQuestions}}/delete/question/4
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJleHAiOjE2ODk2MDgxNDIsImlhdCI6MTY4OTE3NjE0Mn0.pdB8DpV9Qu0lRnAM2Bql4KcNomb_WZycIo-N7A06j9s
 
+### TEST###
+
+### 
+GET {{host}}{{urltest}}
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNjg5NTI5NjEzLCJpYXQiOjE2ODkwOTc2MTN9.Kd7ePDx27lM6rdzAmVjyYLEPnSySfqrfBNcs0QCZ5Yc
+
+
+###
+GET {{host}}{{urltest}}/test/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNjg5NTMxMDczLCJpYXQiOjE2ODkwOTkwNzN9.s_UU0BBU1uGROtqaUymKyx6IZMmyb03uMzFbaPNDboQ
