@@ -1,18 +1,18 @@
 const getAllTest = () => {
-    return db.query("SELECT * FROM academia_opos.test")
+    return db.query("SELECT * FROM academia_opos.tests")
 }
 
 const getByType = (type) => {
-    return db.query("SELECT * FROM academia_opos.test where type = ?", [type])
+    return db.query("SELECT * FROM academia_opos.tests where type = ?", [type])
 }
 
 const create = ({ name, type }) => {
-    return db.query('insert into test (name, type) values (?, ?)', [name, type]);
+    return db.query('insert into tests (name, type) values (?, ?)', [name, type]);
 }
 
 const update = (Id, { name, type }) => {
     return db.query(
-        `update test set
+        `update tests set
         name = ?,
         type = ? where id = ?
         `,
@@ -21,11 +21,11 @@ const update = (Id, { name, type }) => {
 }
 
 const deleteTest = (Id) => {
-    return db.query('DELETE FROM academia_opos.test WHERE id = ?', [Id]);
+    return db.query('DELETE FROM academia_opos.tests WHERE id = ?', [Id]);
 }
 
 
 
 
-module.exports = { getAllTest, getByType, create, update, deleteTest }
+module.exports = { getAllTest, getByType, create, update, deleteTest };
 

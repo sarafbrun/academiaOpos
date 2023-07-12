@@ -1,18 +1,10 @@
 const router = require('express').Router();
 const { checkToken, checkAdmin } = require('../../helpers/middlewares');
-const { getAllSyllabus, getByType, createSyllabus, updateSyllabus, deleteSyllabus } = require('../../models/syllabus.model');
+const { getAllSyllabus, getByType, createSyllabus, updateSyllabus, deleteSyllabus, getSyllabusById, getSyllabusByIdAndType } = require('../../models/syllabus.model');
 
 
-router.get('/', checkToken, checkAdmin(), async (req, res) => {
-    try {
-        const [result] = await getAllSyllabus()
-        res.json(result)
-    } catch (error) {
-        res.json({ error: error.message })
-    }
-});
 
-router.get('/type', checkToken, async (req, res) => {
+router.get('/', checkToken, async (req, res) => {
 
     try {
         if (req.user.role === "admin") {
@@ -24,6 +16,31 @@ router.get('/type', checkToken, async (req, res) => {
         }
     } catch (error) {
         res.json({ error: error.message })
+    }
+});
+
+router.get('/tema/:syllabusId', checkToken, async (req, res) => {
+
+    const { syllabusId } = req.params;
+    const userRole = req.user.role;
+
+    try {
+        if (userRole === "admin") {
+            const [result] = await getSyllabusById(syllabusId);
+
+            return res.json(result);
+        }
+
+        const [result] = await getSyllabusByIdAndType(syllabusId, userRole);
+        if (result.length === 0) {
+            res.send("<h1>No existe el tema seleccionado</h1>")
+        }
+        else {
+            res.json(result);
+        }
+
+    } catch (error) {
+        res.json({ error: error.message });
     }
 });
 
