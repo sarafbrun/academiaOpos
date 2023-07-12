@@ -4,6 +4,7 @@
 
 @urltest = /opos/tests
 @urlsyllabus = /opos/syllabus
+@urlQuestions = /opos/tests/q
 
 
 ### TOKEN PEPE (correos)
@@ -39,10 +40,10 @@ POST {{host}}{{urlUsers}}/register
 Content-Type: application/json
 
 {
-    "email": "pascual@gmail.com",
+    "email": "lorena@gmail.com",
     "password": "1234",
-    "username": "pascualin",
-    "role": "age"
+    "username": "lalore",
+    "role": "correos"
 }
 
 ### LOGIN
@@ -51,7 +52,7 @@ POST {{host}}{{urlUsers}}/login
 Content-Type: application/json
 
 {
-    "email": "pascual@gmail.com",
+    "email": "sara93@gmail.com",
     "password": "1234"
 }
 
@@ -93,9 +94,47 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2
 
 
 
-######## SYLLABUS
+########                  SYLLABUS
 
 ### GET ONE SYLLABUS
 
 GET {{host}}{{urlsyllabus}}/tema/2
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE2ODk1MzA5NTAsImlhdCI6MTY4OTA5ODk1MH0.eAp_Jde6eecjlMBfMd2PS3TgQiCISDoGM8WUcspB-2Y
+
+
+
+
+
+
+
+
+####################     QUESTIONS
+
+### GET ALL QUESTIONS FROM A TEST
+GET {{host}}{{urlQuestions}}/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJleHAiOjE2ODk2MDcxOTksImlhdCI6MTY4OTE3NTE5OX0.NmI9L8y1QMhtF2WsXUZTLE4Ab3nD0YBkkEXk7a7nU-c
+
+### CREATE NEW QUESTION
+POST {{host}}{{urlQuestions}}/new/questions/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJleHAiOjE2ODk2MDgxNDIsImlhdCI6MTY4OTE3NjE0Mn0.pdB8DpV9Qu0lRnAM2Bql4KcNomb_WZycIo-N7A06j9s
+Content-Type: application/json
+
+{
+    "question":"Esto es una segunda prueba"
+}
+
+
+### EDIT A QUESTION
+PUT {{host}}{{urlQuestions}}/edit/2/questions/5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJleHAiOjE2ODk2MDgxNDIsImlhdCI6MTY4OTE3NjE0Mn0.pdB8DpV9Qu0lRnAM2Bql4KcNomb_WZycIo-N7A06j9s
+Content-Type: application/json
+
+{
+    "question": "Una prueba más..."
+}
+
+
+### DELETE A QUESTION
+DELETE {{host}}{{urlQuestions}}/delete/question/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4LCJleHAiOjE2ODk2MDgxNDIsImlhdCI6MTY4OTE3NjE0Mn0.pdB8DpV9Qu0lRnAM2Bql4KcNomb_WZycIo-N7A06j9s
+

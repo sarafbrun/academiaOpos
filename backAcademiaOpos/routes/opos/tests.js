@@ -1,6 +1,9 @@
 const router = require('express').Router();
 const { checkToken, checkAdmin } = require('../../helpers/middlewares');
-const { getAllTest, create, update, deleteTest, getByType, } = require("../../models/tests.model");
+const { getAllTest, create, update, deleteTest, getByType } = require("../../models/tests.model");
+
+
+
 
 router.get('/', checkToken, checkAdmin(), async (req, res) => {
     try {
