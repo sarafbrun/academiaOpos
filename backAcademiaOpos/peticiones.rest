@@ -5,6 +5,7 @@
 @urltest = /opos/tests
 @urlsyllabus = /opos/syllabus
 @urlQuestions = /opos/tests/q
+@urlAnswers = /opos/tests/a
 
 
 ### TOKEN PEPE (correos)
@@ -52,8 +53,8 @@ POST {{host}}{{urlUsers}}/login
 Content-Type: application/json
 
 {
-    "email": "sara93@gmail.com",
-    "email": "araceli@gmail.com",
+   
+    "email": "alberto@gmail.com",
     "password": "1234"
 }
 
@@ -149,3 +150,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjox
 ###
 GET {{host}}{{urltest}}/test/1
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMywiZXhwIjoxNjg5NTMxMDczLCJpYXQiOjE2ODkwOTkwNzN9.s_UU0BBU1uGROtqaUymKyx6IZMmyb03uMzFbaPNDboQ
+
+
+####################     answers
+
+### GET ALL answers FROM A question
+GET {{host}}{{urlAnswers}}/7
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo5LCJleHAiOjE2ODk2MDcxOTksImlhdCI6MTY4OTE3NTE5OX0.NmI9L8y1QMhtF2WsXUZTLE4Ab3nD0YBkkEXk7a7nU-c
+
+### CREATE NEW ANSWER
+POST {{host}}{{urlAnswers}}/new/answers/7
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODk2MTIyNTMsImlhdCI6MTY4OTE4MDI1M30.Dh0P1sglI7NK5x-y3D_wZTd-G1MTIWUHMJYjOLRk7nA
+Content-Type: application/json
+
+{
+    "answer":"respuesta 2"
+}
+
+### EDIT A ANSWER
+PUT {{host}}{{urlAnswers}}/edit/answers/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODk2MTIyNTMsImlhdCI6MTY4OTE4MDI1M30.Dh0P1sglI7NK5x-y3D_wZTd-G1MTIWUHMJYjOLRk7nA
+Content-Type: application/json
+
+{
+    "answer": "Una prueba más..."
+}
+
+### DELETE A ANSWER
+DELETE {{host}}{{urlAnswers}}/delete/answer/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2ODk2MTIyNTMsImlhdCI6MTY4OTE4MDI1M30.Dh0P1sglI7NK5x-y3D_wZTd-G1MTIWUHMJYjOLRk7nA
